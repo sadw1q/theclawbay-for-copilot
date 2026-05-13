@@ -1,0 +1,7 @@
+src/**
+README.ko.md
+node_modules/**
+tsconfig.json
+.gitignore
+.env
+.vscode/**

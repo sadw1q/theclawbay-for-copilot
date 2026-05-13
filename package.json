@@ -1,0 +1,75 @@
+{
+  "name": "theclawbay-for-copilot",
+  "displayName": "TheClawBay for Copilot Chat",
+  "description": "Use GPT 5.5 from TheClawBay in the Copilot Chat model picker with reasoning effort control.",
+  "version": "0.1.0",
+  "publisher": "theclawbay",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.116.0",
+    "node": ">=20"
+  },
+  "extensionKind": ["ui", "workspace"],
+  "categories": ["AI", "Chat"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languageModelChatProviders": [
+      {
+        "vendor": "theclawbay",
+        "displayName": "TheClawBay"
+      }
+    ],
+    "commands": [
+      {
+        "command": "theclawbay-copilot.setApiKey",
+        "title": "TheClawBay: Set API Key"
+      },
+      {
+        "command": "theclawbay-copilot.clearApiKey",
+        "title": "TheClawBay: Clear API Key"
+      },
+      {
+        "command": "theclawbay-copilot.openSettings",
+        "title": "TheClawBay: Open Settings"
+      },
+      {
+        "command": "theclawbay-copilot.showLogs",
+        "title": "TheClawBay: Show Logs"
+      }
+    ],
+    "configuration": {
+      "title": "TheClawBay for Copilot Chat",
+      "properties": {
+        "theclawbay-copilot.baseUrl": {
+          "type": "string",
+          "default": "https://api.theclawbay.com/v1",
+          "description": "TheClawBay OpenAI-compatible base URL."
+        },
+        "theclawbay-copilot.maxTokens": {
+          "type": "number",
+          "default": 0,
+          "minimum": 0,
+          "description": "Max output tokens (0 = provider default)."
+        },
+        "theclawbay-copilot.debug": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable debug logs in the TheClawBay output channel."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "clean": "node -e \"require('node:fs').rmSync('out', { recursive: true, force: true })\"",
+    "compile": "npm run clean && tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package --allow-missing-repository -o theclawbay-for-copilot-0.1.0.vsix"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/vscode": "^1.116.0",
+    "@vscode/vsce": "^3.9.1",
+    "typescript": "^5.5.0"
+  }
+}
