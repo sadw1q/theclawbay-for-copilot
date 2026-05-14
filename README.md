@@ -1,73 +1,242 @@
 # TheClawBay for Copilot Chat
 
-## English
+Use TheClawBay's GPT models directly inside GitHub Copilot Chat.
 
-Use **GPT 5.5** from **TheClawBay** inside the Copilot Chat model picker.
+This extension adds **GPT-5.5, GPT-5.4, GPT-5.4 mini, GPT-5.3-Codex, GPT-5.2, GPT-5.2-Codex, GPT-5.1-Codex mini, GPT-5.1-Codex max** to the Copilot Chat model picker.
 
-### Features
+**한국어 설명서:** [README.ko.md](README.ko.md)
 
-- Copilot Chat model picker integration
-- Per-model reasoning effort selection
-- API key stored in VS Code SecretStorage
-- OpenAI-compatible `/chat/completions` streaming
+---
 
-### Setup
+## What you need
 
-1. Install the extension package.
+Before installing, prepare these:
 
+1. Visual Studio Code (latest stable)
+2. GitHub Copilot extension installed and signed in
+3. GitHub Copilot Chat extension installed
+4. A TheClawBay account and API key
+5. The extension file: `theclawbay-for-copilot-0.2.0.vsix`
+
+If you do not have GitHub Copilot:
+
+- Sign up at https://github.com/features/copilot
+- Install **GitHub Copilot** and **GitHub Copilot Chat** from the VS Code Extensions tab
+
+If you do not have a TheClawBay API key:
+
+- Go to https://theclawbay.com
+- Sign up
+- Open the dashboard
+- Create an API key
+- Copy it somewhere safe
+
+---
+
+## Installation
+
+You have three options. Pick one.
+
+### Option 1: Install with the VSIX file (Easiest)
+
+1. Open Visual Studio Code.
+2. Press the Extensions icon on the left bar (or `Ctrl + Shift + X`).
+3. Click the `...` menu at the top of the Extensions panel.
+4. Pick **Install from VSIX...**
+5. Choose `theclawbay-for-copilot-0.2.0.vsix`.
+6. When VS Code asks, click **Reload** to restart.
+
+### Option 2: Install from the terminal
+
+Windows PowerShell:
+
+```powershell
+code --install-extension "C:\full\path\to\theclawbay-for-copilot-0.2.0.vsix" --force
+```
+
+macOS / Linux:
+
+```bash
+code --install-extension "/full/path/to/theclawbay-for-copilot-0.2.0.vsix" --force
+```
+
+> Tip: Use the full absolute path to avoid `ENOENT: no such file or directory` errors.
+
+### Option 3: Build from source (developers)
+
+```bash
 git clone https://github.com/sadw1q/theclawbay-for-copilot.git
-
 cd theclawbay-for-copilot
-
 npm install
-
 npm run compile
-
 npm run package
+code --install-extension ./theclawbay-for-copilot-0.2.0.vsix --force
+```
 
-code --install-extension ./theclawbay-for-copilot-0.1.0.vsix
+---
 
-and
+## First-time setup
 
-ctrl + shift + p (in vsc) reload window
-ctrl + shift + p (in vsc) TheClawBay: Set API Key
+1. Restart Visual Studio Code after installing.
+2. Open the Command Palette:
+   - Windows / Linux: `Ctrl + Shift + P`
+   - macOS: `Cmd + Shift + P`
+3. Type and run:
 
-2. Run **TheClawBay: Set API Key** from the Command Palette.
-3. Open Copilot Chat and choose **GPT 5.5**.
-4. Use the model menu to set reasoning effort if needed.
+```text
+TheClawBay: Set API Key
+```
 
-### Files
+4. Paste your TheClawBay API key.
+5. Press Enter.
 
-- Extension entry: `src/extension.ts`
-- Provider logic: `src/provider.ts`
-- API client: `src/client.ts`
-- Message conversion: `src/convert.ts`
-- Model list: `src/models.ts`
-- Secret storage: `src/auth.ts`
+The key is stored in **VS Code SecretStorage** (the OS keychain), not in plain settings.
 
-## 한국어
+---
 
-**TheClawBay**의 **GPT 5.5**를 Copilot Chat 모델 선택기에서 사용할 수 있는 확장입니다.
+## Using a TheClawBay model
 
-### 기능
+1. Open the Copilot Chat panel.
+2. Click the **model picker** at the top of the chat.
+3. Pick one of the TheClawBay models, for example:
 
-- Copilot Chat 모델 선택기 연동
-- 모델별 추론 강도 선택
-- API 키는 VS Code SecretStorage에 저장
-- OpenAI 호환 `/chat/completions` 스트리밍
+```text
+GPT-5.5
+```
 
-### 설정
+4. Type a message and press Enter. The response streams back from TheClawBay.
 
-1. 확장 패키지를 설치합니다.
-2. 명령 팔레트에서 **TheClawBay: Set API Key**를 실행합니다.
-3. Copilot Chat을 열고 **GPT 5.5**를 선택합니다.
-4. 필요하면 모델 메뉴에서 추론 강도를 조정합니다.
+---
 
-### 파일 위치
+## Choosing reasoning effort
 
-- 확장 진입점: `src/extension.ts`
-- Provider 로직: `src/provider.ts`
-- API 클라이언트: `src/client.ts`
-- 메시지 변환: `src/convert.ts`
-- 모델 목록: `src/models.ts`
-- 비밀 저장소: `src/auth.ts`
+Some models expose a **Reasoning Effort** menu in the model picker. Higher effort = more careful thinking, but slower and more expensive.
+
+Available models and supported effort levels:
+
+| Display name             | Sent model id           | Reasoning efforts                   | Default |
+| ------------------------ | ----------------------- | ----------------------------------- | ------- |
+| GPT-5.5                  | `gpt-5.5`               | low / medium / high / xhigh         | xhigh   |
+| GPT-5.4                  | `gpt-5.4`               | minimal / low / medium / high       | medium  |
+| GPT-5.4 mini             | `gpt-5.4-mini`          | minimal / low / medium / high       | medium  |
+| GPT-5.3-Codex            | `gpt-5.3-codex`         | low / medium / high                 | medium  |
+| GPT-5.2                  | `gpt-5.2`               | none / low / medium / high / xhigh  | medium  |
+| GPT-5.2-Codex            | `gpt-5.2-codex`         | low / medium / high / xhigh         | medium  |
+| GPT-5.1-Codex mini       | `gpt-5.1-codex-mini`    | medium / high                       | medium  |
+| GPT-5.1-Codex max        | `gpt-5.1-codex-max`     | none / medium / high / xhigh        | medium  |
+
+To change the effort:
+
+1. Open the Copilot Chat model picker.
+2. Hover the model and click the gear / menu icon.
+3. Pick a reasoning effort.
+
+---
+
+## Settings
+
+Open **VS Code Settings** and search for `TheClawBay`. You will see:
+
+| Setting key                    | Default                            | Meaning                                                          |
+| ------------------------------ | ---------------------------------- | ---------------------------------------------------------------- |
+| `theclawbay-copilot.baseUrl`   | `https://api.theclawbay.com/v1`    | API endpoint. Change only if you proxy TheClawBay through your own URL. |
+| `theclawbay-copilot.maxTokens` | `0`                                | Max output tokens. `0` means: let the provider decide.            |
+| `theclawbay-copilot.debug`     | `false`                            | Verbose logs in the **TheClawBay for Copilot** output channel.    |
+
+To view logs:
+
+```text
+TheClawBay: Show Logs
+```
+
+---
+
+## Commands
+
+All available from the Command Palette:
+
+- **TheClawBay: Set API Key** – Save your API key in SecretStorage.
+- **TheClawBay: Clear API Key** – Delete the saved key.
+- **TheClawBay: Open Settings** – Jump straight to the extension settings.
+- **TheClawBay: Show Logs** – Open the diagnostics output channel.
+
+---
+
+## Updating the extension
+
+1. Pull or download a newer version of the repo / VSIX.
+2. Re-run the installation step (Option 1, 2, or 3 above).
+3. VS Code automatically replaces the previous version.
+
+To check the installed version:
+
+```bash
+code --list-extensions --show-versions | grep theclawbay
+```
+
+PowerShell:
+
+```powershell
+code --list-extensions --show-versions | Select-String theclawbay
+```
+
+---
+
+## Uninstall
+
+From the Extensions tab: search **TheClawBay for Copilot Chat** and click **Uninstall**.
+
+From the terminal:
+
+```bash
+code --uninstall-extension theclawbay.theclawbay-for-copilot
+```
+
+Your API key stays in SecretStorage even after uninstall. To wipe it, run **TheClawBay: Clear API Key** before uninstalling, or delete it from the OS keychain manually.
+
+---
+
+## Troubleshooting
+
+**`ENOENT: no such file or directory` when installing**
+Use the full path to the VSIX, or `cd` into the folder that contains it.
+
+**Model does not appear in Copilot Chat**
+- Restart VS Code after installing.
+- Make sure GitHub Copilot Chat is installed and signed in.
+- Run `TheClawBay: Set API Key` if you have not yet.
+
+**`401 Unauthorized` errors**
+- Your API key is wrong, expired, or pasted with extra spaces. Run `TheClawBay: Set API Key` again.
+
+**Response stops mid-stream**
+- Check `TheClawBay: Show Logs` for HTTP errors.
+- Confirm your TheClawBay quota / billing is in good standing.
+
+**The reasoning effort menu is missing**
+- Some VS Code versions cache model metadata. Reload the window: `Developer: Reload Window`.
+
+---
+
+## Project structure
+
+```
+copilot-theclawbay/
+├── src/
+│   ├── extension.ts   # Extension entry point
+│   ├── provider.ts    # Copilot Chat provider
+│   ├── client.ts      # TheClawBay HTTP client
+│   ├── convert.ts     # VS Code <-> OpenAI message conversion
+│   ├── models.ts      # Supported models and reasoning levels
+│   ├── auth.ts        # API key storage
+│   └── logger.ts      # Output channel
+├── package.json
+├── tsconfig.json
+└── README.md / README.ko.md
+```
+
+---
+
+## License
+
+MIT. See [LICENSE](LICENSE) if included.

@@ -1,10 +1,14 @@
 {
   "name": "theclawbay-for-copilot",
   "displayName": "TheClawBay for Copilot Chat",
-  "description": "Use GPT 5.5 from TheClawBay in the Copilot Chat model picker with reasoning effort control.",
-  "version": "0.1.0",
+  "description": "Use TheClawBay's GPT models in the Copilot Chat model picker with reasoning effort control.",
+  "version": "0.2.0",
   "publisher": "theclawbay",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sadw1q/theclawbay-for-copilot"
+  },
   "engines": {
     "vscode": "^1.116.0",
     "node": ">=20"
@@ -64,7 +68,7 @@
     "clean": "node -e \"require('node:fs').rmSync('out', { recursive: true, force: true })\"",
     "compile": "npm run clean && tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "package": "vsce package --allow-missing-repository -o theclawbay-for-copilot-0.1.0.vsix"
+    "package": "vsce package -o theclawbay-for-copilot-0.2.0.vsix"
   },
   "devDependencies": {
     "@types/node": "^20.14.0",

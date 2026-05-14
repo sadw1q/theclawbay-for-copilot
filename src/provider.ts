@@ -11,6 +11,8 @@ interface ModelConfigurationOptions extends vscode.ProvideLanguageModelChatRespo
 }
 
 const EFFORT_LABELS: Record<ReasoningEffort, string> = {
+	minimal: 'Minimal',
+	none: 'None',
 	low: 'Low',
 	medium: 'Medium',
 	high: 'High',
@@ -18,6 +20,8 @@ const EFFORT_LABELS: Record<ReasoningEffort, string> = {
 };
 
 const EFFORT_DESCRIPTIONS: Record<ReasoningEffort, string> = {
+	minimal: 'Smallest reasoning budget',
+	none: 'Disable reasoning',
 	low: 'Fastest responses',
 	medium: 'Balanced default',
 	high: 'Recommended for harder tasks',

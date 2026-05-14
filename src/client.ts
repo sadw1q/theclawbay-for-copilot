@@ -30,7 +30,7 @@ export interface ChatRequest {
 	max_tokens?: number;
 	tools?: Tool[];
 	tool_choice?: 'none' | 'auto' | 'required';
-	reasoning_effort?: 'low' | 'medium' | 'high' | 'xhigh';
+	reasoning_effort?: 'minimal' | 'none' | 'low' | 'medium' | 'high' | 'xhigh';
 	stream_options?: {
 		include_usage: boolean;
 	};
