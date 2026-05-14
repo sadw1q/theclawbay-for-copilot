@@ -17,9 +17,13 @@ Use **GPT 5.5** from **TheClawBay** inside the Copilot Chat model picker.
 
 git clone https://github.com/sadw1q/theclawbay-for-copilot.git
 cd theclawbay-for-copilot
+
 npm install
+
 npm run compile
+
 npm run package
+
 code --install-extension ./theclawbay-for-copilot-0.1.0.vsix
 
 and
