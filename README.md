@@ -14,6 +14,19 @@ Use **GPT 5.5** from **TheClawBay** inside the Copilot Chat model picker.
 ### Setup
 
 1. Install the extension package.
+
+git clone https://github.com/sadw1q/theclawbay-for-copilot.git
+cd theclawbay-for-copilot
+npm install
+npm run compile
+npm run package
+code --install-extension ./theclawbay-for-copilot-0.1.0.vsix
+
+and
+
+ctrl + shift + p (in vsc) reload window
+ctrl + shift + p (in vsc) TheClawBay: Set API Key
+
 2. Run **TheClawBay: Set API Key** from the Command Palette.
 3. Open Copilot Chat and choose **GPT 5.5**.
 4. Use the model menu to set reasoning effort if needed.
