@@ -133,7 +133,10 @@ export class TheClawBayProvider implements vscode.LanguageModelChatProvider {
 		this.refresh();
 	}
 
-	async provideLanguageModelChatInformation(): Promise<vscode.LanguageModelChatInformation[]> {
+	async provideLanguageModelChatInformation(
+		_options: vscode.PrepareLanguageModelChatModelOptions,
+		_token: vscode.CancellationToken,
+	): Promise<vscode.LanguageModelChatInformation[]> {
 		if (!this.isActive) {
 			logger.info('provideLanguageModelChatInformation called while inactive; returning []');
 			return [];
@@ -245,6 +248,7 @@ export class TheClawBayProvider implements vscode.LanguageModelChatProvider {
 	async provideTokenCount(
 		_modelInfo: vscode.LanguageModelChatInformation,
 		text: string | vscode.LanguageModelChatRequestMessage,
+		_token: vscode.CancellationToken,
 	): Promise<number> {
 		if (typeof text === 'string') {
 			return Math.max(1, Math.ceil(text.length / 4));
