@@ -164,21 +164,36 @@ All available from the Command Palette:
 
 ## Updating the extension
 
-1. Pull or download a newer version of the repo / VSIX.
-2. Re-run the installation step (Option 1, 2, or 3 above).
-3. VS Code automatically replaces the previous version.
+> **⚠️ Important — if you already installed an older version (0.1.x / 0.2.0 / 0.2.1 / 0.2.2):**
+> A simple `--force` reinstall sometimes does **not** replace the previous version, and Copilot Chat keeps showing only the old model list (e.g. only GPT-5.5). Always **uninstall first**, then install the new VSIX.
 
-To check the installed version:
+### Recommended upgrade steps
 
 ```bash
+# 1) Check which version is currently installed
 code --list-extensions --show-versions | grep theclawbay
+
+# 2) Uninstall the old version completely
+code --uninstall-extension theclawbay.theclawbay-for-copilot
+
+# 3) Install the new VSIX (use the absolute path)
+code --install-extension "/full/path/to/theclawbay-for-copilot-0.2.3.vsix"
+
+# 4) Verify
+code --list-extensions --show-versions | grep theclawbay
+# expected: theclawbay.theclawbay-for-copilot@0.2.3
 ```
 
 PowerShell:
 
 ```powershell
 code --list-extensions --show-versions | Select-String theclawbay
+code --uninstall-extension theclawbay.theclawbay-for-copilot
+code --install-extension "C:\full\path\to\theclawbay-for-copilot-0.2.3.vsix"
 ```
+
+5. **Reload VS Code window** after install: `Ctrl/Cmd + Shift + P` → **Developer: Reload Window**.
+6. Open Copilot Chat → the model picker should now list all 8 TheClawBay models.
 
 ---
 
@@ -201,10 +216,24 @@ Your API key stays in SecretStorage even after uninstall. To wipe it, run **TheC
 **`ENOENT: no such file or directory` when installing**
 Use the full path to the VSIX, or `cd` into the folder that contains it.
 
-**Model does not appear in Copilot Chat**
+**Only one model (e.g. only GPT-5.5) appears in Copilot Chat**
+This is almost always caused by an old version (0.1.x / 0.2.0 / 0.2.1 / 0.2.2) still being installed. VS Code's `--install-extension --force` does NOT always overwrite, even when it reports success.
+Fix:
+```bash
+code --uninstall-extension theclawbay.theclawbay-for-copilot
+code --install-extension "/full/path/to/theclawbay-for-copilot-0.2.3.vsix"
+```
+Then `Developer: Reload Window`. Verify with:
+```bash
+code --list-extensions --show-versions | grep theclawbay
+# must show 0.2.3 or newer
+```
+
+**No TheClawBay model appears at all**
 - Restart VS Code after installing.
 - Make sure GitHub Copilot Chat is installed and signed in.
 - Run `TheClawBay: Set API Key` if you have not yet.
+- Run `TheClawBay: Show Logs` and look for `provideLanguageModelChatInformation returning N model(s)`. `N` should be 8.
 
 **`401 Unauthorized` errors**
 - Your API key is wrong, expired, or pasted with extra spaces. Run `TheClawBay: Set API Key` again.

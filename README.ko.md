@@ -161,21 +161,36 @@ TheClawBay: Show Logs
 
 ## 업데이트
 
-1. 새 VSIX 또는 새 소스를 받습니다.
-2. 위 설치 방법 1, 2, 3 중 하나를 그대로 다시 실행합니다.
-3. VS Code가 자동으로 이전 버전을 덮어씁니다.
+> **⚠️ 중요 — 예전 버전(0.1.x / 0.2.0 / 0.2.1 / 0.2.2)이 이미 깔려 있다면:**
+> `--force` 로 그냥 다시 설치해도 **이전 버전이 안 지워질 때가 있습니다.** 그러면 Copilot Chat 모델 선택기에 **GPT-5.5 같은 모델 1개만** 계속 보입니다. 반드시 **먼저 제거 → 새 VSIX 설치** 순서로 진행하세요.
 
-설치된 버전 확인:
+### 권장 업데이트 절차
 
 ```bash
+# 1) 현재 설치된 버전 확인
 code --list-extensions --show-versions | grep theclawbay
+
+# 2) 기존 버전 완전 제거
+code --uninstall-extension theclawbay.theclawbay-for-copilot
+
+# 3) 새 VSIX 설치 (절대 경로 사용)
+code --install-extension "/전체/경로/theclawbay-for-copilot-0.2.3.vsix"
+
+# 4) 확인
+code --list-extensions --show-versions | grep theclawbay
+# 결과 예: theclawbay.theclawbay-for-copilot@0.2.3
 ```
 
 PowerShell:
 
 ```powershell
 code --list-extensions --show-versions | Select-String theclawbay
+code --uninstall-extension theclawbay.theclawbay-for-copilot
+code --install-extension "C:\전체경로\theclawbay-for-copilot-0.2.3.vsix"
 ```
+
+5. 설치 후 **VS Code 창을 새로 고침**: `Ctrl/Cmd + Shift + P` → **Developer: Reload Window**.
+6. Copilot Chat을 열어 모델 선택기를 누르면 TheClawBay 모델 8종이 모두 보여야 합니다.
 
 ---
 
@@ -198,10 +213,24 @@ code --uninstall-extension theclawbay.theclawbay-for-copilot
 **설치할 때 `ENOENT: no such file or directory`**
 VSIX 전체 경로를 지정하거나, VSIX가 있는 폴더로 `cd` 한 뒤 다시 시도하세요.
 
-**Copilot Chat 모델 선택기에 모델이 안 보임**
+**모델이 1개(예: GPT-5.5)만 보임**
+이건 거의 100% **예전 버전(0.1.x / 0.2.0 / 0.2.1 / 0.2.2)이 안 지워진 채로 깔려있는 상태** 입니다. VS Code의 `--install-extension --force` 가 성공이라고 출력해도 실제로는 이전 버전이 그대로 남아 있는 경우가 있습니다.
+해결:
+```bash
+code --uninstall-extension theclawbay.theclawbay-for-copilot
+code --install-extension "/전체/경로/theclawbay-for-copilot-0.2.3.vsix"
+```
+그다음 `Developer: Reload Window`. 확인:
+```bash
+code --list-extensions --show-versions | grep theclawbay
+# 0.2.3 이상이 떠야 정상
+```
+
+**Copilot Chat 모델 선택기에 TheClawBay 모델이 하나도 안 보임**
 - 설치 후 VS Code를 재시작했는지 확인하세요.
 - GitHub Copilot Chat이 설치/로그인되어 있어야 합니다.
 - `TheClawBay: Set API Key` 를 아직 안 했다면 실행하세요.
+- `TheClawBay: Show Logs` 를 열어서 `provideLanguageModelChatInformation returning N model(s)` 로그를 확인하세요. `N` 이 8이어야 정상입니다.
 
 **`401 Unauthorized` 가 떨어짐**
 - 키가 잘못됐거나 만료됐거나, 앞뒤에 공백이 들어갔을 가능성. `TheClawBay: Set API Key` 로 다시 저장하세요.
