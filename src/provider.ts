@@ -135,10 +135,15 @@ export class TheClawBayProvider implements vscode.LanguageModelChatProvider {
 
 	async provideLanguageModelChatInformation(): Promise<vscode.LanguageModelChatInformation[]> {
 		if (!this.isActive) {
+			logger.info('provideLanguageModelChatInformation called while inactive; returning []');
 			return [];
 		}
 		const hasKey = await this.authManager.hasApiKey();
-		return MODELS.map((model) => toChatInfo(model, hasKey));
+		const result = MODELS.map((model) => toChatInfo(model, hasKey));
+		logger.info(
+			`provideLanguageModelChatInformation returning ${result.length} model(s): ${result.map((r) => r.id).join(', ')}`,
+		);
+		return result;
 	}
 
 	async provideLanguageModelChatResponse(

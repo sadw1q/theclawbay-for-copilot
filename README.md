@@ -16,7 +16,7 @@ Before installing, prepare these:
 2. GitHub Copilot extension installed and signed in
 3. GitHub Copilot Chat extension installed
 4. A TheClawBay account and API key
-5. The extension file: `theclawbay-for-copilot-0.2.1.vsix`
+5. The extension file: `theclawbay-for-copilot-0.2.2.vsix`
 
 If you do not have GitHub Copilot:
 
@@ -43,7 +43,7 @@ You have three options. Pick one.
 2. Press the Extensions icon on the left bar (or `Ctrl + Shift + X`).
 3. Click the `...` menu at the top of the Extensions panel.
 4. Pick **Install from VSIX...**
-5. Choose `theclawbay-for-copilot-0.2.1.vsix`.
+5. Choose `theclawbay-for-copilot-0.2.2.vsix`.
 6. When VS Code asks, click **Reload** to restart.
 
 ### Option 2: Install from the terminal
@@ -51,13 +51,13 @@ You have three options. Pick one.
 Windows PowerShell:
 
 ```powershell
-code --install-extension "C:\full\path\to\theclawbay-for-copilot-0.2.1.vsix" --force
+code --install-extension "C:\full\path\to\theclawbay-for-copilot-0.2.2.vsix" --force
 ```
 
 macOS / Linux:
 
 ```bash
-code --install-extension "/full/path/to/theclawbay-for-copilot-0.2.1.vsix" --force
+code --install-extension "/full/path/to/theclawbay-for-copilot-0.2.2.vsix" --force
 ```
 
 > Tip: Use the full absolute path to avoid `ENOENT: no such file or directory` errors.
@@ -70,7 +70,7 @@ cd theclawbay-for-copilot
 npm install
 npm run compile
 npm run package
-code --install-extension ./theclawbay-for-copilot-0.2.1.vsix --force
+code --install-extension ./theclawbay-for-copilot-0.2.2.vsix --force
 ```
 
 ---
