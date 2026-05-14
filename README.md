@@ -16,6 +16,7 @@ Use **GPT 5.5** from **TheClawBay** inside the Copilot Chat model picker.
 1. Install the extension package.
 
 git clone https://github.com/sadw1q/theclawbay-for-copilot.git
+
 cd theclawbay-for-copilot
 
 npm install
