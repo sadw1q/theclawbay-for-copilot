@@ -111,34 +111,5 @@ export const MODELS: ModelDef[] = [
 			default: 'medium',
 		},
 	},
-	{
-		id: 'gpt-5-1-codex-mini',
-		apiModelId: 'gpt-5.1-codex-mini',
-		name: 'GPT-5.1-Codex mini',
-		family: 'gpt-5.1-codex-mini',
-		version: '5.1-codex-mini',
-		detail: 'GPT-5.1 Codex mini via TheClawBay',
-		maxInputTokens: 400_000,
-		maxOutputTokens: 128_000,
-		capabilities: { toolCalling: true, imageInput: false, thinking: true },
-		reasoning: {
-			efforts: ['medium', 'high'],
-			default: 'medium',
-		},
-	},
-	{
-		id: 'gpt-5-1-codex-max',
-		apiModelId: 'gpt-5.1-codex-max',
-		name: 'GPT-5.1-Codex max',
-		family: 'gpt-5.1-codex-max',
-		version: '5.1-codex-max',
-		detail: 'GPT-5.1 Codex max via TheClawBay',
-		maxInputTokens: 400_000,
-		maxOutputTokens: 128_000,
-		capabilities: { toolCalling: true, imageInput: false, thinking: true },
-		reasoning: {
-			efforts: ['none', 'medium', 'high', 'xhigh'],
-			default: 'medium',
-		},
-	},
+
 ];

@@ -2,7 +2,7 @@
 
 Use TheClawBay's GPT models directly inside GitHub Copilot Chat.
 
-This extension adds **GPT-5.5, GPT-5.4, GPT-5.4 mini, GPT-5.3-Codex, GPT-5.2, GPT-5.2-Codex, GPT-5.1-Codex mini, GPT-5.1-Codex max** to the Copilot Chat model picker.
+This extension adds **GPT-5.5, GPT-5.4, GPT-5.4 mini, GPT-5.3-Codex, GPT-5.2, GPT-5.2-Codex** to the Copilot Chat model picker.
 
 **한국어 설명서:** [README.ko.md](README.ko.md)
 
@@ -16,7 +16,7 @@ Before installing, prepare these:
 2. GitHub Copilot extension installed and signed in
 3. GitHub Copilot Chat extension installed
 4. A TheClawBay account and API key
-5. The extension file: `theclawbay-for-copilot-0.2.3.vsix`
+5. The extension file: `theclawbay-for-copilot-0.3.0.vsix`
 
 If you do not have GitHub Copilot:
 
@@ -43,7 +43,7 @@ You have three options. Pick one.
 2. Press the Extensions icon on the left bar (or `Ctrl + Shift + X`).
 3. Click the `...` menu at the top of the Extensions panel.
 4. Pick **Install from VSIX...**
-5. Choose `theclawbay-for-copilot-0.2.3.vsix`.
+5. Choose `theclawbay-for-copilot-0.3.0.vsix`.
 6. When VS Code asks, click **Reload** to restart.
 
 ### Option 2: Install from the terminal
@@ -51,13 +51,13 @@ You have three options. Pick one.
 Windows PowerShell:
 
 ```powershell
-code --install-extension "C:\full\path\to\theclawbay-for-copilot-0.2.3.vsix" --force
+code --install-extension "C:\full\path\to\theclawbay-for-copilot-0.3.0.vsix" --force
 ```
 
 macOS / Linux:
 
 ```bash
-code --install-extension "/full/path/to/theclawbay-for-copilot-0.2.3.vsix" --force
+code --install-extension "/full/path/to/theclawbay-for-copilot-0.3.0.vsix" --force
 ```
 
 > Tip: Use the full absolute path to avoid `ENOENT: no such file or directory` errors.
@@ -70,7 +70,7 @@ cd theclawbay-for-copilot
 npm install
 npm run compile
 npm run package
-code --install-extension ./theclawbay-for-copilot-0.2.3.vsix --force
+code --install-extension ./theclawbay-for-copilot-0.3.0.vsix --force
 ```
 
 ---
@@ -122,8 +122,6 @@ Available models and supported effort levels:
 | GPT-5.3-Codex            | `gpt-5.3-codex`         | low / medium / high                 | medium  |
 | GPT-5.2                  | `gpt-5.2`               | none / low / medium / high / xhigh  | medium  |
 | GPT-5.2-Codex            | `gpt-5.2-codex`         | low / medium / high / xhigh         | medium  |
-| GPT-5.1-Codex mini       | `gpt-5.1-codex-mini`    | medium / high                       | medium  |
-| GPT-5.1-Codex max        | `gpt-5.1-codex-max`     | none / medium / high / xhigh        | medium  |
 
 To change the effort:
 
@@ -164,7 +162,7 @@ All available from the Command Palette:
 
 ## Updating the extension
 
-> **⚠️ Important — if you already installed an older version (0.1.x / 0.2.0 / 0.2.1 / 0.2.2):**
+> **⚠️ Important — if you already installed an older version (0.1.x / 0.2.0 / 0.2.1 / 0.2.2 / 0.2.3):**
 > A simple `--force` reinstall sometimes does **not** replace the previous version, and Copilot Chat keeps showing only the old model list (e.g. only GPT-5.5). Always **uninstall first**, then install the new VSIX.
 
 ### Recommended upgrade steps
@@ -177,11 +175,11 @@ code --list-extensions --show-versions | grep theclawbay
 code --uninstall-extension theclawbay.theclawbay-for-copilot
 
 # 3) Install the new VSIX (use the absolute path)
-code --install-extension "/full/path/to/theclawbay-for-copilot-0.2.3.vsix"
+code --install-extension "/full/path/to/theclawbay-for-copilot-0.3.0.vsix"
 
 # 4) Verify
 code --list-extensions --show-versions | grep theclawbay
-# expected: theclawbay.theclawbay-for-copilot@0.2.3
+# expected: theclawbay.theclawbay-for-copilot@0.3.0
 ```
 
 PowerShell:
@@ -189,7 +187,7 @@ PowerShell:
 ```powershell
 code --list-extensions --show-versions | Select-String theclawbay
 code --uninstall-extension theclawbay.theclawbay-for-copilot
-code --install-extension "C:\full\path\to\theclawbay-for-copilot-0.2.3.vsix"
+code --install-extension "C:\full\path\to\theclawbay-for-copilot-0.3.0.vsix"
 ```
 
 5. **Reload VS Code window** after install: `Ctrl/Cmd + Shift + P` → **Developer: Reload Window**.
@@ -217,16 +215,16 @@ Your API key stays in SecretStorage even after uninstall. To wipe it, run **TheC
 Use the full path to the VSIX, or `cd` into the folder that contains it.
 
 **Only one model (e.g. only GPT-5.5) appears in Copilot Chat**
-This is almost always caused by an old version (0.1.x / 0.2.0 / 0.2.1 / 0.2.2) still being installed. VS Code's `--install-extension --force` does NOT always overwrite, even when it reports success.
+This is almost always caused by an old version (0.1.x / 0.2.0 / 0.2.1 / 0.2.2 / 0.2.3) still being installed. VS Code's `--install-extension --force` does NOT always overwrite, even when it reports success.
 Fix:
 ```bash
 code --uninstall-extension theclawbay.theclawbay-for-copilot
-code --install-extension "/full/path/to/theclawbay-for-copilot-0.2.3.vsix"
+code --install-extension "/full/path/to/theclawbay-for-copilot-0.3.0.vsix"
 ```
 Then `Developer: Reload Window`. Verify with:
 ```bash
 code --list-extensions --show-versions | grep theclawbay
-# must show 0.2.3 or newer
+# must show 0.3.0 or newer
 ```
 
 **No TheClawBay model appears at all**
