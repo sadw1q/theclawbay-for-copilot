@@ -264,3 +264,9 @@ copilot-theclawbay/
 ## 라이선스
 
 MIT. 제공된 경우 [LICENSE](LICENSE) 참조.
+
+---
+
+<div align="center">
+  <sub>Made with ❤️ by <a href="https://github.com/sadw1q">sadw1q</a></sub>
+</div>
