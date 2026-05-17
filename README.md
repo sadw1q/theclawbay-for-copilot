@@ -267,3 +267,9 @@ copilot-theclawbay/
 ## License
 
 MIT. See [LICENSE](LICENSE) if included.
+
+---
+
+<div align="center">
+  <sub>Made with ❤️ by <a href="https://github.com/sadw1q">sadw1q</a></sub>
+</div>
